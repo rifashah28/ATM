@@ -36,6 +36,7 @@ public class ATM
 		System.out.println("5 - Exit.");
 		
 		int userAns = menuChoice.nextInt();//takes the user's choice 
+		//after user chooses send it to transaction
 		
 		
 	} // End of menu

@@ -1,5 +1,5 @@
 package atmMachine;
-
+//make a receipt method  
 //This will further divide to deposit, withdraw, check balance, and transfer
 public class Transaction
 {

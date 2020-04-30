@@ -4,17 +4,17 @@ public class Account
 {
 	int cardNum;
 	int pinNum;
-	double balance;
+	static double balance;
 	
 	public Account () 
 	{
 		
 	}
-	public Account(int card,int pin, double balance) 
+	public Account(int card,int pin, double bal) 
 	{
 		this.cardNum = card;
 		this.pinNum = pin;
-		this.balance = balance;
+		this.balance = bal;
 	}
 	
 	/**
@@ -22,11 +22,11 @@ public class Account
 	 * 
 	 * @param balance is the Balance in the Account.
 	 */
-	public void setBalance(double balance) 
+	public static void setBalance(double bal) 
 	{
 		if (balance >= 0)
 		{
-			this.balance = balance;
+			balance = bal;
 		} // End of if-statement
 	} // End of setBalance
 
@@ -35,7 +35,7 @@ public class Account
 	 * 
 	 * @return balance. Balance as a double.
 	 */
-	public double getBalance()
+	public static double getBalance()
 	{
 		return balance;
 	} // End of getBalance
@@ -45,7 +45,7 @@ public class Account
 	 * 
 	 * @param amount. Amount added to the Account.
 	 */
-	public void addToBalance(double amount)
+	public static void addToBalance(double amount)
 	{
 		if (amount > 0)
 		{
@@ -58,7 +58,7 @@ public class Account
 	 * 
 	 * @param amount. Amount subtracted from the Account.
 	 */
-	public void subtractFromBalance(double amount)
+	public static void subtractFromBalance(double amount)
 	{
 		if (amount > 0)
 		{
