@@ -14,12 +14,13 @@ public class Withdraw
 		
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Your balance is " + Account.getBalance());
-		System.out.println("How much woul you like to withdraw?");
-		
-		withdrawAmount = scan.nextDouble();
+
 		
 		for(int i = 0; i < 3 && wrongAmount; i++)//user gets 3 tries
 		{
+			System.out.println("How much woul you like to withdraw?");
+			withdrawAmount = scan.nextDouble();
+			
 			if(withdrawAmount >= Account.getBalance()) 
 			{
 				System.out.println("Withdrawal Amount is Greater than your Balance.\nPlease Try Again.");
