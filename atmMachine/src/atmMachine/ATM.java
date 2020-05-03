@@ -8,18 +8,15 @@ import java.nio.file.Paths;
 
 public class ATM
 {
-	/**
-	 * Make this the main menu
-	 */
-	public void menu() 
+	public static void main(String args[]) 
 	{
 		int cardNumberFromFile = 0;
 		int pinNumberFromFile = 0;
 		int balanceFromFile = 0;
-		boolean wrongPin = true;
+		
 		Account userBankAccount;
 		
-		boolean cardNumExist = false;
+		boolean cardNumExist = true;
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Welcome to the ATM.");
@@ -36,7 +33,7 @@ public class ATM
 		 * After the program has access to the txt file, the values will be sent to Account.Account(card,pin,balance)
 		 */
 		
-		while(cardNumExist)//while card numbers does not exist
+		while(cardNumExist)//while card numbers exist
 		{
 			try 
 			{
@@ -46,7 +43,7 @@ public class ATM
 				pinNumberFromFile = Integer.parseInt(lines.get(1));//the pin number that is on the file
 				balanceFromFile = Integer.parseInt(lines.get(2));//balance amount on the file
 			
-				cardNumExist = true;
+				break;
 			}
 			catch(Exception e) 
 			{
@@ -54,19 +51,18 @@ public class ATM
 			}
 		}
 
-		for(int i = 0; i < 3 && wrongPin; i++) 
+		//fix pin number attempts
+		for(int i = 0; i < 3; i++) 
 		{
-			System.out.println("Please Enter Pin Number: "); // 6 digit pin num
+			
+			System.out.println("Please Enter Pin Number: "); // 5 digit pin num
 			//if card num and pin num are right then thats when you get this menu
 			//if not the program will exit after 3 tries
 			int pinNum = sc.nextInt();
 			
-			if(pinNum != pinNumberFromFile) 
+			if(pinNum == pinNumberFromFile) 
 			{
-				System.out.println("Wrong Pin Number. Please try again");
-			}
-			else //else if the pin number entered by the user is right
-			{
+				i += 2;
 				userBankAccount = new Account(cardNumberFromFile, pinNumberFromFile, balanceFromFile);//the account of the user
 				
 				//WELCOME Message
@@ -96,14 +92,22 @@ public class ATM
 						break;
 					case 5:
 						System.out.println("Thank you. Have a nice day.");
-						System.exit(0);
-						
+						System.exit(0);					
 				}
-				//after this. it will send to Transaction class where it should sent the user to either one of the menu item
+				
+			}
+			else //else if the pin number entered by the user is right
+			{
+				System.out.println("Wrong Pin Number. Please try again");
+				
+				if(i == 3) 
+				{
+					System.out.println("Login Attempt Exceeded Allowed Ammount.");
+					System.exit(0);
+				}
+				//opens the same text then writes the new balance	
 			}
 		}
-		
-		
 	} // End of menu
 	
 } // End of ATM class
