@@ -80,6 +80,25 @@ public class ATM
 				System.out.println("5 - Exit.");
 				
 				int choice = sc.nextInt();
+				switch(choice) 
+				{
+					case 1:
+						Deposit.deposit();
+						break;
+					case 2:
+						Withdraw.withdraw();
+						break;
+					case 3:
+						CheckBalance.checkBalance();
+						break;
+					case 4:
+						TransferFund.transferFund();
+						break;
+					case 5:
+						System.out.println("Thank you. Have a nice day.");
+						System.exit(0);
+						
+				}
 				//after this. it will send to Transaction class where it should sent the user to either one of the menu item
 			}
 		}

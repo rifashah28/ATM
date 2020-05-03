@@ -5,7 +5,7 @@ import java.util.Scanner;
 //subracts an Amount from the account balance
 public class Withdraw 
 {
-	public void withdraw() 
+	public static void withdraw() 
 	{
 		double withdrawAmount;
 		double accBalance;
@@ -15,7 +15,6 @@ public class Withdraw
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Your balance is " + Account.getBalance());
 
-		
 		for(int i = 0; i < 3 && wrongAmount; i++)//user gets 3 tries
 		{
 			System.out.println("How much woul you like to withdraw?");

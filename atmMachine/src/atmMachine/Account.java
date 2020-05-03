@@ -2,19 +2,20 @@ package atmMachine;
 
 public class Account
 {
-	int cardNum;
+	static int cardNum;
 	int pinNum;
 	static double balance;
 	
-	public Account () 
-	{
+	//public Account () 
+	//{
 		
-	}
+	//}
+	
 	public Account(int card,int pin, double bal) 
 	{
-		this.cardNum = card;
+		Account.cardNum = card;
 		this.pinNum = pin;
-		this.balance = bal;
+		Account.balance = bal;
 	}
 	
 	/**
@@ -65,4 +66,9 @@ public class Account
 			balance = balance - amount;
 		} // End of if-statement
 	} // End of subtractFromBalance
+	
+	public static int getCardNum() 
+	{
+		return cardNum;
+	}
 }

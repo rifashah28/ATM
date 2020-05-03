@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Deposit 
 {
 
-	public void deposit()
+	public static void deposit()
 	{
 		double depositAmmount;//initial for the deposit ammount
 		double accBalance;//initial for the account balance
