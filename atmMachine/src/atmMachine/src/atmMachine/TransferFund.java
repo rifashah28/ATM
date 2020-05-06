@@ -1,11 +1,98 @@
 package atmMachine;
 
-//transfers fund from one file to another
+import java.util.Scanner;
+
 public class TransferFund
+
 {
-	static String name = "Transfer Fund";
-	public static void transferFund() 
+
+	static String name = "Transfer from Balance";
+
+	public static void transfer() 
+
 	{
+
+		double transferAmount;
+
+		double accBalance;
+
+		boolean wrongAmount = true;//checks the amount
 		
+		int accountNum;
+
+		int choice;
+
+		
+
+		Scanner scan = new Scanner(System.in);
+
+		System.out.println("Your balance is " + Account.getBalance());
+
+
+
+		for(int i = 0; i < 3 && wrongAmount; i++)//user gets 3 tries
+
+		{
+			System.out.println("Enter Account Number you want to transfer money to? ");
+			
+			accountNum = scan.nextInt();
+
+			System.out.println("How much would you like to transfer?");
+
+			transferAmount = scan.nextDouble();
+
+			
+
+			if(transferAmount >= Account.getBalance()) 
+
+			{
+
+				System.out.println("Transfer Amount is Greater than your Balance.\nPlease Try Again.");
+
+			}
+
+			else 
+
+			{
+
+				accBalance = Account.getBalance() - transferAmount;
+
+				
+				System.out.println(transferAmount + " has been deposited to the account " + accountNum);
+				System.out.println("Your new balance is " + accBalance);
+
+				Account.setBalance(accBalance);
+
+				wrongAmount = false;
+
+				System.out.println("Would you like a Receipt?\n1. Yes\n2. No");
+
+				choice = scan.nextInt();
+
+				if(choice == 1) 
+
+				{
+
+					//make receipt class
+
+				}
+
+				else 
+
+				{
+
+					System.out.println("Thank you! Have a nice day.");
+
+				}
+
+			}
+
+		
+
+		}
+
 	}
+
 }
+
+//DO SOME TEST TO CHECK IF ITS RIGHT
