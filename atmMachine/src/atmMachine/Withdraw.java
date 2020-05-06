@@ -5,6 +5,7 @@ import java.util.Scanner;
 //subracts an Amount from the account balance
 public class Withdraw 
 {
+	static String name = "Withdawal from Balance";
 	public static void withdraw() 
 	{
 		double withdrawAmount;

@@ -38,7 +38,7 @@ public class Account
 	 */
 	public static double getBalance()
 	{
-		return Account.balance;
+		return balance;
 	} // End of getBalance
 
 	/**

@@ -42,12 +42,12 @@ public class ATM
 				cardNumberFromFile = Integer.parseInt(lines.get(0));//the card number that is on the file(file name)
 				pinNumberFromFile = Integer.parseInt(lines.get(1));//the pin number that is on the file
 				balanceFromFile = Integer.parseInt(lines.get(2));//balance amount on the file
-			
 				break;
 			}
 			catch(Exception e) 
 			{
 				System.out.println("Card does not Exist");
+				System.exit(0);
 			}
 		}
 
@@ -75,26 +75,31 @@ public class ATM
 				System.out.println("4 - Transfer Balance.");
 				System.out.println("5 - Exit.");
 				
-				int choice = sc.nextInt();
+				int choice = sc.nextInt();//choice for menu
+				//switch case to send to diff class
 				switch(choice) 
 				{
 					case 1:
 						Deposit.deposit();
+						//receipt class
 						break;
 					case 2:
 						Withdraw.withdraw();
+						//receipt class
 						break;
 					case 3:
 						CheckBalance.checkBalance();
+						//receipt class
 						break;
 					case 4:
 						TransferFund.transferFund();
+						//receipt class
 						break;
 					case 5:
-						System.out.println("Thank you. Have a nice day.");
+						System.out.println("Thank you for using our ATM. Have a nice day.");
 						System.exit(0);					
 				}
-				
+				PrintReceipt.printReceipt();
 			}
 			else //else if the pin number entered by the user is right
 			{
