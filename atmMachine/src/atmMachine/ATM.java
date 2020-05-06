@@ -2,6 +2,7 @@ package atmMachine;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
+import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -12,17 +13,17 @@ public class ATM
 	{
 		int cardNumberFromFile = 0;
 		int pinNumberFromFile = 0;
-		int balanceFromFile = 0;
+		String balanceFromFile = null;
 		
 		Account userBankAccount;
 		
 		boolean cardNumExist = true;
 		Scanner sc = new Scanner(System.in);
-		
+		List<String> lines = null;
 		System.out.println("Welcome to the ATM.");
 		System.out.println("Please Enter Card Number: "); // give a 6 digit card num
 		int cardNum = sc.nextInt();//takes the card number from user
-		
+		Path fileScan;
 		/**
 		 * need to make a txt file where the name is the card num.
 		 * in the file the first line will be the pin num.
@@ -37,17 +38,17 @@ public class ATM
 		{
 			try 
 			{
-				Path fileScan = Paths.get(cardNum + ".txt");//search for card num text file
-				List<String> lines = Files.readAllLines(fileScan);//put all lines in a List of strings
+				fileScan = Paths.get(cardNum + ".txt");//search for card num text file
+				lines = Files.readAllLines(fileScan);//put all lines in a List of strings
 				cardNumberFromFile = Integer.parseInt(lines.get(0));//the card number that is on the file(file name)
 				pinNumberFromFile = Integer.parseInt(lines.get(1));//the pin number that is on the file
-				balanceFromFile = Integer.parseInt(lines.get(2));//balance amount on the file
-			
+				balanceFromFile = lines.get(2);//balance amount on the file
 				break;
 			}
 			catch(Exception e) 
 			{
 				System.out.println("Card does not Exist");
+				System.exit(0);
 			}
 		}
 
@@ -63,6 +64,7 @@ public class ATM
 			if(pinNum == pinNumberFromFile) 
 			{
 				i += 2;
+				//double balanceInteger = Integer.parseInt(balanceFromFile);
 				userBankAccount = new Account(cardNumberFromFile, pinNumberFromFile, balanceFromFile);//the account of the user
 				
 				//WELCOME Message
@@ -75,7 +77,8 @@ public class ATM
 				System.out.println("4 - Transfer Balance.");
 				System.out.println("5 - Exit.");
 				
-				int choice = sc.nextInt();
+				int choice = sc.nextInt();//choice for menu
+				//switch case to send to diff class
 				switch(choice) 
 				{
 					case 1:
@@ -86,15 +89,14 @@ public class ATM
 						break;
 					case 3:
 						CheckBalance.checkBalance();
-						break;
 					case 4:
 						TransferFund.transferFund();
 						break;
 					case 5:
-						System.out.println("Thank you. Have a nice day.");
+						System.out.println("Thank you for using our ATM. Have a nice day.");
 						System.exit(0);					
 				}
-				
+				PrintReceipt.printReceipt();
 			}
 			else //else if the pin number entered by the user is right
 			{
@@ -107,6 +109,23 @@ public class ATM
 				}
 				//opens the same text then writes the new balance	
 			}
+			
+		}//end of for loop pin num verification
+		//save to file
+		try 
+		{
+			String numCard = String.valueOf(Account.cardNum);
+			String numPin = String.valueOf(Account.pinNum);
+			
+			String numBalance = String.valueOf(Account.balance);
+			
+			FileWriter fw = new FileWriter(numCard + ".txt");
+			fw.write(numCard + "\n" + numPin + "\n" + numBalance);
+			fw.close();
+		}
+		catch(Exception e)
+		{
+			System.out.print("Writing to file problem");
 		}
 	} // End of menu
 	

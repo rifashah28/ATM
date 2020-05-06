@@ -3,6 +3,7 @@ package atmMachine;
 //checks the balance in the account
 public class CheckBalance
 {
+	static String name = "Check Balance";
 	public static void checkBalance()
 	{
 		System.out.println("Card Number : " + Account.getCardNum());
